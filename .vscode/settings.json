@@ -1,0 +1,31 @@
+{
+    "cSpell.language": "en,de",
+    "files.exclude": {
+        "**/**.aux": true,
+        "**.fdb_latexmk": true,
+        "**.fls": true,
+        "**.synctex.gz":true,
+        "**.lof":true,
+        "**.lot":true,
+        "**.toc":true,
+        "**.xdv":true,
+        "**.log":true,
+        "**.bbl":true,
+        "**.bcf":true,
+        "**.blg":true,
+    },
+    "cSpell.words": [
+        
+    ],
+    "latex-workshop.latex.tools": [{
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+            "-xelatex",
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOC%"
+        ]
+    }],
+}

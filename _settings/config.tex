@@ -1,0 +1,172 @@
+\usepackage[ngerman]{babel}
+
+% Context sensitive quotation facilities
+\usepackage[autostyle,german=quotes]{csquotes}
+
+\usepackage{mathptmx}
+%\usepackage[T1]{fontenc}
+
+
+% Erlaubt Positionierung von Abbildungen
+\usepackage{float}
+% mit dem command \fbox vor dem \includegraphics{} wird das Bild schwarz umrandet
+
+
+
+% Erlaube Zugriff auf 'author', 'date', 'title' durch \@author etc.
+% Siehe auch:
+% https://tex.stackexchange.com/questions/10130/use-the-values-of-title-author-and-date-on-a-custom-title-page
+\makeatletter
+
+% fontspec wird statt fontenc verwendet (fontenc ist veraltet)
+% fontspec erlaubt Zeichen wie das "ß", ändert aber die Schriftart
+% https://tex.stackexchange.com/questions/28450/xetex-%C3%9F-compiles-as-ss-german-umlauts-work
+\usepackage{fontspec}
+% Überschreibe den Default font
+\setmainfont{Times New Roman}
+
+% Entferne Farben, die sonst in Hyperlinks/Referenzen auftauchen würden
+\usepackage[hidelinks]{hyperref}
+
+% Erstellt Bookmarks in PDFs und erstellt Hyperlinks von Links
+\usepackage{bookmark}
+
+% Global - Unterdrücke Einrückungen bei neuen Absätzen
+\setlength\parindent{0pt}
+% mit \par wird ein neuer Absatz eingerichtet, welche sofern oben geschriebenes nicht aktiviert ist eingerückt wird. durch  \\ kann ein Satz direkt
+% direkt in die neue Zeile gesetzt werden ohne Einrücken, auch wenn automatischen Einrücken nicht unterdrückt ist!
+
+% Enhanced support for graphics
+% Im img Ordner befinden sich alle Bilder
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+% Sorgt dafür, dass Abbildungsunterschriften Linksbündig sind
+\usepackage{ragged2e}
+\usepackage[format=plain,
+      justification=RaggedRight,
+      singlelinecheck=false]
+     {caption}
+
+% Erlaubt clevere Referenzierung
+% http://tug.ctan.org/macros/latex/contrib/cleveref/cleveref.pdf
+\usepackage{cleveref}
+
+% Erlaubt die Verwendung von \titleformat
+% (LaTeX fügt standardmäßig 'Kapitel 1' etc. vor den eigentlichen Kapitel)
+% (Deshalb müssen wir das Titleformat manuell ändern)
+% Siehe auch:
+% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+% \chapter{Überschrift} > Kapitel 1
+% \section{Unterüberschrift} > Kapitel 1.1
+% \subsection{Unterunterüberschrift} > Kapitel 1.1.1
+% \subsubsection{Unterunterunterüberschrift} > Kapitel 1.1.1.1
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\bfseries\Huge}{\thechapter.}{10pt}{}
+
+% Passt Abstände der Überschriften an
+% \titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
+\titlespacing*{\chapter}{0pt}{-40pt}{15pt}
+\titlespacing*{\section}{0pt}{0pt}{10pt}
+
+% Ermöglicht die Einstellung von Seitenrändern und ähnlichem 
+% https://www.namsu.de/Extra/pakete/Geometry.html
+
+\usepackage[a4paper,left=2cm,right=2.5cm,top=2cm,bottom=2.5cm]{geometry}
+
+% Änderung der Schriftgröße :Changing the font size locally
+% \Huge \huge
+% \LARGE \Large \large
+% \normalsize (default)
+% \small
+% \footnotesize
+% \scriptsize
+% \tiny
+%
+% damit nicht der ganze folgende Text, sondern nur bestimmter Text in der Größe geändert wird:
+% {\huge Hier den Text einfügen}#
+
+
+% zum Anzeigen des Seitenlayouts 
+%\usepackage{showframe}
+
+% Literaturverzeichnis
+% Siehe auch:
+% https://www.heise.de/tipps-tricks/LaTeX-Literaturverzeichnis-erstellen-so-klappt-s-4401420.html
+\usepackage[backend=biber,bibstyle=authortitle,citestyle=authoryear]{biblatex}
+\addbibresource{lit.bib}
+\addbibresource{lit-web.bib}
+
+
+% Multipliziert den Zeilenabstand
+\linespread{1,5}
+
+% So macht man direkte Zitate:
+% 
+%\begin{quotation}
+%    \glqq Arguing that you don't care about the right to privacy because you 
+%    have nothing to hide is no different than saying you don't care about free 
+%    speech because you have nothing to say.\grqq\footnote{\cite{snowden2015}}
+%\end{quotation} 
+
+% Ermöglicht eine Veränderung der Zeilenabstände bei einer Nummerierten Aufzählung
+% \setlist[enumerate]{itemsep=xcm}
+% \begin{enumerate}
+\usepackage{enumitem}
+
+% subsubsection wird jetzt nummeriert und im Inhaltsverzeichnis angezeigt
+% \setcounter{tocdepth}{3}
+% \setcounter{secnumdepth}{3}
+
+
+% Breche URLs um, um under-full \hbox zu verhindern
+% \setcounter{biburllcpenalty}{7000}
+% \setcounter{biburlucpenalty}{8000}
+\usepackage[bottom]{footmisc}
+
+% Remove padding from \fbox command
+\setlength{\fboxsep}{0pt}
+\setlength{\fboxrule}{1pt}
+
+% Erstellung eines Abkürzungsverzeichnis
+% Siehe auch:
+% https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_Abk%C3%BCrzungsverzeichnis
+\usepackage{acronym}
+
+% Abstand für neue Absätze
+\renewcommand{\\}{\vspace*{0.5\baselineskip} \newline}
+
+% Hurenkinder und Schusterjungen verhindern
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty=10000
+
+% Die Abbildungen in meinem Dokument sollen unabhängig von Kapiteln und 
+% Unterkapiteln durchnummeriert werden, beginnend mit 1
+\renewcommand{\thefigure}{\arabic{figure}}
+
+% Fußnoten werden durchlaufend durch das Dokument nummeriert und starten nicht bei jedem Kapitel bei 1
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+\counterwithout{figure}{chapter}
+
+\usepackage{xcolor}
+\definecolor{turkis}{HTML}{389ab5}
+\definecolor{white}{HTML}{ffffff}
+%\definecolor{turkis}{RGB}{45,72,80}
+
+\usepackage{setspace}
+
+\usepackage[font={footnotesize},labelsep=colon]{caption}
+
+% Zur Seitenzahl, /newpage nach Roman Counting, sonst wird schon in Arabic gezählt
+
+% Funktioniert anscheinend nicht in Kombi mit hyperref
+%\usepackage{titleref}
+
+\setlength\bibitemsep{15pt}  % Abstand zwischen 2 Einträgen im LitVZ
+%\setlength{\bibhang}{2em} % Einrücken 2. Zeile im LitVZ
+
+% \setlength\itemsep{0mm}
+
+\setlist{noitemsep}
